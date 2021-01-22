@@ -3,7 +3,7 @@
   "description": "The GeoDB API focuses on getting global city and region data. <ul style=\"list-style-position:inside; list-style-type:square\"> <li>Filter cities by name prefix, country, location, time-zone, and even minimum population</li> <li>Sort cities by name, country code, elevation, and population - or any combination of these</li> <li>Get nearby cities</li> <li>Get distances between cities</li> <li>Get all country regions</li> <li>Get all cities in a given region</li> <li>Display results in multiple languages</li>  <li>Backed by cloud-based load-balanced infrastructure for resiliency and performance</li> <li>Data is periodically refreshed from GeoNames and WikiData</li> <li><a href='http://creativecommons.org/licenses/by/3.0/'>Usage License</a></li>  </ul>",
   "graphdoc": {
     "endpoint": "http://geodb-free.whelastic.net/graphql",
-    "logo": "<img src=\"https://wirefreethought.github.io/geodb-cities-graphql-api/assets/logo.png\" />",
+    "logo": "<img src=\"https://wirefreethought.github.io/geodb-cities-graphql-api-docs/assets/logo.png\" />",
     "output": "./docs",
     "baseUrl": "./"
   }
