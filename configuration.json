@@ -4,7 +4,7 @@
   "graphdoc": {
     "endpoint": "http://geodb-free.whelastic.net/graphql",
     "logo": "<img src=\"https://wirefreethought.github.io/geodb-cities-graphql-api/docs/assets/logo.png\" />",
-    "output": "./schema",
+    "output": "./docs",
     "baseUrl": "./"
   }
 }
