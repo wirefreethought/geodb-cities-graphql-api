@@ -1,13 +1,16 @@
-directive @default(property : String!) on ARGUMENT_DEFINITION
+"Allows setting runtime defaults on arguments"
+directive @default(
+    "The runtime property to use for the default value"
+    property : String!
+) on ARGUMENT_DEFINITION
 
+"Allows aliasing a result field by sourcing it to a different underlying field on the type being returned"
 directive @fetch(
   from: String!
 )
 on FIELD_DEFINITION
 
-"""
-The unit of distance to use when considering a distance arg (for example, in location-related criteria)
-"""
+"The unit of distance to use when considering a distance arg (for example, in location-related criteria)"
 enum DistanceUnit {
   "Kilometers"
   KM
@@ -16,9 +19,7 @@ enum DistanceUnit {
   MI
 }
 
-"""
-The populated-place types currently available
-"""
+"The populated-place types currently supported"
 enum PopulatedPlaceType {
    "A level-2 administrative division (for example, a county)"
   ADM2
@@ -27,9 +28,7 @@ enum PopulatedPlaceType {
   CITY
 }
 
-"""
-What level of stale data is ok to pull
-"""
+"What level of stale data is ok to pull"
 enum IncludeDeletedFilterType {
   "All data, regardless of if/when marked deleted"
   ALL
@@ -44,9 +43,7 @@ enum IncludeDeletedFilterType {
   NONE
 }
 
-"""
-How the results should be rendered
-"""
+"How the results should be rendered"
 input DisplayOptions {
   "Whether to display results using ASCII-only characters."
   asciiMode: Boolean = false
@@ -55,9 +52,7 @@ input DisplayOptions {
   languageCode: String = "en_US"
 }
 
-"""
-Location GPS latitude/longitude coordinates
-"""
+"Location GPS latitude/longitude coordinates"
 input Location {
   "DD.DDDD from -90 to 90"
   latitude: Float
@@ -66,15 +61,15 @@ input Location {
   longitude: Float
 }
 
-"""
-The set of possible top-level queries.
-"""
+"The set of possible top-level queries"
 type Query {
+  "Look up a country"
   country(
     id: ID!
     displayOptions: DisplayOptions
   ): Country
 
+  "Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries."
   countries(
     currencyCode: String
     namePrefix: String
@@ -87,6 +82,7 @@ type Query {
     displayOptions: DisplayOptions
   ): CountriesConnection
 
+  "Find currencies, filtering by optional criteria. If no criteria are set, you will get back all known currencies."
   currencies(
     countryId: String
 
@@ -96,6 +92,7 @@ type Query {
     before: String
   ): CurrenciesConnection
 
+  "Get the distance between any two places"
   distanceBetween(
     fromPlaceId: String
     toPlaceId: String
@@ -109,6 +106,7 @@ type Query {
     before: String
   ): LanguagesConnection
 
+  "Get all known locales"
   locales(
     first: Int
     after: String
@@ -116,11 +114,13 @@ type Query {
     before: String
   ): LocalesConnection
 
+  "Look up a populated place"
   populatedPlace(
     id: ID!
     displayOptions: DisplayOptions
   ): PopulatedPlace
 
+  "Find populated places, filtering by optional criteria. If no criteria are set, you will get back all known places."
   populatedPlaces (
     location: Location
     radius: Float = 100
@@ -147,8 +147,10 @@ type Query {
     includeDeleted: IncludeDeletedFilterType = NONE
   ): PopulatedPlacesConnection
 
+  "Look up a time-zone"
   timeZone(id: ID!): TimeZone
 
+  "Get all known time-zones"
   timeZones(
     first: Int
     after: String
