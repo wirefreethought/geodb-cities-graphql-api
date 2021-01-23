@@ -312,7 +312,7 @@
     <div class="container">
         <p class="slds-text-title--caps slds-text-color--weak">ENUM</p>
         <h1 class="slds-text-heading--large">IncludeDeletedFilterType</h1>
-        <div class="slds-text-body--regular"><p>Indicates what level of stale data is ok to pull</p>
+        <div class="slds-text-body--regular"><p>What level of stale data is ok to pull</p>
 </div>
     </div>
 </section>
@@ -324,7 +324,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">enum</span> <span class="identifier">IncludeDeletedFilterType</span> {</li><li><span class="tab"></span></li><li><span class="tab"><span class="meta">ALL</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="meta">SINCE_YESTERDAY</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="meta">SINCE_LAST_WEEK</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="meta">NONE</span></span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">enum</span> <span class="identifier">IncludeDeletedFilterType</span> {</li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   All data, regardless of if/when marked deleted</span></span></li><li><span class="tab"><span class="meta">ALL</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Only data not marked deleted before yesterday</span></span></li><li><span class="tab"><span class="meta">SINCE_YESTERDAY</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Only data not marked deleted before last week</span></span></li><li><span class="tab"><span class="meta">SINCE_LAST_WEEK</span></span></li><li><span class="tab"></span></li><li><span class="tab"><span class="comment line">#   Only data not marked deleted</span></span></li><li><span class="tab"><span class="meta">NONE</span></span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
