@@ -1,5 +1,5 @@
 #!/bin/bash
 
-graphdoc -c configuration.json --force
+graphdoc -c configuration.json -s schema.json --force
 
 cp -f ../../product/logo.png docs/assets/.
