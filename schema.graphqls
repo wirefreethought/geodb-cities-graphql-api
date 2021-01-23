@@ -1,0 +1,386 @@
+directive @default(property : String!) on ARGUMENT_DEFINITION
+
+directive @fetch(
+  from: String!
+)
+on FIELD_DEFINITION
+
+"""
+The unit of distance to use when considering a distance arg (for example, in location-related criteria)
+"""
+enum DistanceUnit {
+  "Kilometers"
+  KM
+
+  "Miles"
+  MI
+}
+
+"""
+The populated-place types currently available
+"""
+enum PopulatedPlaceType {
+   "A level-2 administrative division (for example, a county)"
+  ADM2
+
+  "A city, town, or village"
+  CITY
+}
+
+"""
+What level of stale data is ok to pull
+"""
+enum IncludeDeletedFilterType {
+  "All data, regardless of if/when marked deleted"
+  ALL
+
+  "Only data not marked deleted before yesterday"
+  SINCE_YESTERDAY
+
+  "Only data not marked deleted before last week"
+  SINCE_LAST_WEEK
+
+  "Only data not marked deleted"
+  NONE
+}
+
+"""
+How the results should be rendered
+"""
+input DisplayOptions {
+  "Whether to display results using ASCII-only characters."
+  asciiMode: Boolean = false
+
+  "What language to display the results in."
+  languageCode: String = "en_US"
+}
+
+"""
+Location GPS latitude/longitude coordinates
+"""
+input Location {
+  "DD.DDDD from -90 to 90"
+  latitude: Float
+
+  "DD.DDDD from -180 to 180"
+  longitude: Float
+}
+
+"""
+The set of possible top-level queries.
+"""
+type Query {
+  country(
+    id: ID!
+    displayOptions: DisplayOptions
+  ): Country
+
+  countries(
+    currencyCode: String
+    namePrefix: String
+
+    first: Int
+    after: String
+    last: Int
+    before: String
+
+    displayOptions: DisplayOptions
+  ): CountriesConnection
+
+  currencies(
+    countryId: String
+
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): CurrenciesConnection
+
+  distanceBetween(
+    fromPlaceId: String
+    toPlaceId: String
+    distanceUnit: DistanceUnit = MI
+  ): Float
+
+  languages(
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): LanguagesConnection
+
+  locales(
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): LocalesConnection
+
+  populatedPlace(
+    id: ID!
+    displayOptions: DisplayOptions
+  ): PopulatedPlace
+
+  populatedPlaces (
+    location: Location
+    radius: Float = 100
+    distanceUnit: DistanceUnit = MI
+
+    countryIds: [String]
+    excludedCountryIds: [String]
+
+    namePrefix: String
+    minPopulation: Int @default(property:"defaults.minPopulation")
+    maxPopulation: Int
+    timeZoneIds: [String]
+    types: [String]
+
+    sort: String
+
+    first: Int
+    after: String
+    last: Int
+    before: String
+
+    displayOptions: DisplayOptions
+
+    includeDeleted: IncludeDeletedFilterType = NONE
+  ): PopulatedPlacesConnection
+
+  timeZone(id: ID!): TimeZone
+
+  timeZones(
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): TimeZonesConnection
+}
+
+type ConnectionPageInfo {
+  startCursor: String
+  endCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+}
+
+type Country {
+  code: ID
+
+  name: String
+  wikiDataId: String
+
+  currencyCodes: [String]
+  flagImageUri: String
+
+  numRegions: Int
+
+  region(
+    code: String
+  ): CountryRegion
+
+  regions(
+    namePrefix: String
+
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): CountryRegionsConnection
+}
+
+type CountryEdge {
+  cursor: String
+  node: Country
+}
+
+type CountriesConnection {
+  totalCount: Int
+  edges: [CountryEdge]
+  pageInfo: ConnectionPageInfo
+}
+
+type CountryRegion {
+  isoCode: ID
+
+  fipsCode: String
+  name: String
+  wikiDataId: String
+
+  capital: String
+
+  country: Country
+
+  numPopulatedPlaces: Int @fetch(from:"numCities")
+
+  populatedPlaces (
+    countryIds: [String]
+    excludedCountryIds: [String]
+
+    namePrefix: String
+    minPopulation: Int @default(property:"defaults.minPopulation")
+    maxPopulation: Int
+    timeZoneIds: [String]
+    types: [String]
+
+    sort: String
+
+    first: Int
+    after: String
+    last: Int
+    before: String
+
+    includeDeleted: IncludeDeletedFilterType = NONE
+  ): RegionPopulatedPlacesConnection
+}
+
+type CountryRegionEdge {
+  cursor: String
+  node: CountryRegion
+}
+
+type CountryRegionsConnection {
+  totalCount: Int
+  edges: [CountryRegionEdge]
+  pageInfo: ConnectionPageInfo
+}
+
+type Currency {
+  countryCodes: [String]
+  code: ID
+  symbol: String
+}
+
+type CurrencyEdge {
+  cursor: String
+  node: Currency
+}
+
+type CurrenciesConnection {
+  totalCount: Int
+  edges: [CurrencyEdge]
+  pageInfo: ConnectionPageInfo
+}
+
+type Language {
+  code: ID
+  name: String
+}
+
+type LanguageEdge {
+  cursor: String
+  node: Language
+}
+
+type LanguagesConnection {
+  totalCount: Int
+  edges: [LanguageEdge]
+  pageInfo: ConnectionPageInfo
+}
+
+type Locale {
+  code: ID
+  name: String
+}
+
+type LocaleEdge {
+  cursor: String
+  node: Locale
+}
+
+type LocalesConnection {
+  totalCount: Int
+  edges: [LocaleEdge]
+  pageInfo: ConnectionPageInfo
+}
+
+type NearbyPopulatedPlacesConnection {
+  totalCount: Int
+  edges: [PopulatedPlaceEdge]
+  pageInfo: ConnectionPageInfo
+}
+
+type PopulatedPlace {
+  id: ID
+
+  name: String
+  placeType: PopulatedPlaceType @fetch(from:"type")
+  wikiDataId: String
+
+  elevationMeters: Int
+  latitude: Float
+  longitude: Float
+  population: Int
+  timezone: String
+
+  country: Country
+  region: CountryRegion
+
+  distance(
+    toPlaceId: String
+    distanceUnit: DistanceUnit = MI
+  ): Float
+
+  nearbyPopulatedPlaces(
+    radius: Float = 100
+    distanceUnit: DistanceUnit = MI
+
+    countryIds: [String]
+    excludedCountryIds: [String]
+
+    namePrefix: String
+    minPopulation: Int @default(property:"defaults.minPopulation")
+    maxPopulation: Int
+    timeZoneIds: [String]
+    types: [String]
+
+    sort: String
+
+    first: Int
+    after: String
+    last: Int
+    before: String
+
+    includeDeleted: IncludeDeletedFilterType = NONE
+  ): NearbyPopulatedPlacesConnection
+
+  deleted: Boolean
+}
+
+type PopulatedPlaceEdge {
+  cursor: String
+  node: PopulatedPlace
+}
+
+type PopulatedPlacesConnection {
+  totalCount: Int
+  edges: [PopulatedPlaceEdge]
+  pageInfo: ConnectionPageInfo
+}
+
+type RegionPopulatedPlacesConnection {
+  totalCount: Int
+  edges: [PopulatedPlaceEdge]
+  pageInfo: ConnectionPageInfo
+}
+
+type TimeZone {
+  id: ID
+
+  name: String
+  rawUtcOffsetHours: Int
+
+  dateTime: String
+  time: String
+}
+
+type TimeZoneEdge {
+  cursor: String
+  node: TimeZone
+}
+
+type TimeZonesConnection {
+  totalCount: Int
+  edges: [TimeZoneEdge]
+  pageInfo: ConnectionPageInfo
+}
