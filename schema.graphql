@@ -19,6 +19,33 @@ enum DistanceUnit {
   MI
 }
 
+"The languages currently supported"
+enum Language {
+  "German"
+  DE
+
+  "English"
+  EN
+
+  "Spanish"
+  ES
+
+  "French"
+  FR
+
+  "Italian"
+  IT
+
+  "Portuguese"
+  PT
+
+  "Portuguese (Brazil)"
+  PT_BR
+
+  "Russian"
+  RU
+}
+
 "The populated-place types currently supported"
 enum PopulatedPlaceType {
    "A level-2 administrative division (for example, a county)"
@@ -49,7 +76,7 @@ input DisplayOptions {
   asciiMode: Boolean = false
 
   "What language to display the results in."
-  languageCode: String = "en_US"
+  language: Language = EN
 }
 
 "Location GPS latitude/longitude coordinates"
@@ -63,7 +90,7 @@ input Location {
 
 "The set of possible top-level queries"
 type Query {
-  "Look up a country"
+  "Look up a country"  
   country(
     id: ID!
     displayOptions: DisplayOptions
@@ -98,13 +125,6 @@ type Query {
     toPlaceId: String
     distanceUnit: DistanceUnit = MI
   ): Float
-
-  languages(
-    first: Int
-    after: String
-    last: Int
-    before: String
-  ): LanguagesConnection
 
   "Get all known locales"
   locales(
@@ -261,22 +281,6 @@ type CurrencyEdge {
 type CurrenciesConnection {
   totalCount: Int
   edges: [CurrencyEdge]
-  pageInfo: ConnectionPageInfo
-}
-
-type Language {
-  code: ID
-  name: String
-}
-
-type LanguageEdge {
-  cursor: String
-  node: Language
-}
-
-type LanguagesConnection {
-  totalCount: Int
-  edges: [LanguageEdge]
   pageInfo: ConnectionPageInfo
 }
 

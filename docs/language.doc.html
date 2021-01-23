@@ -75,6 +75,11 @@
                             IncludeDeletedFilterType
                         </a>
                     </li>
+                    <li class="slds-is-active" title="Language">
+                        <a href="language.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                            Language
+                        </a>
+                    </li>
                     <li  title="PopulatedPlaceType">
                         <a href="populatedplacetype.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                             PopulatedPlaceType
@@ -143,21 +148,6 @@
                     <li  title="CurrencyEdge">
                         <a href="currencyedge.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                             CurrencyEdge
-                        </a>
-                    </li>
-                    <li class="slds-is-active" title="Language">
-                        <a href="language.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
-                            Language
-                        </a>
-                    </li>
-                    <li  title="LanguageEdge">
-                        <a href="languageedge.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
-                            LanguageEdge
-                        </a>
-                    </li>
-                    <li  title="LanguagesConnection">
-                        <a href="languagesconnection.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
-                            LanguagesConnection
                         </a>
                     </li>
                     <li  title="Locale">
@@ -310,9 +300,10 @@
                   </div>
               </div>
               <div class="container">
-                  <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
+                  <p class="slds-text-title--caps slds-text-color--weak">ENUM</p>
                   <h1 class="slds-text-heading--large">Language</h1>
-                  <div class="slds-text-body--regular"></div>
+                  <div class="slds-text-body--regular"><p>The languages currently supported</p>
+</div>
               </div>
           </section>
           <section>
@@ -323,7 +314,7 @@
                       </a>
                       GraphQL Schema definition
                   </h2>
-                  <code class="highlight"><table class="code"><tbody><tr class="row"><td id="L1" class="td-index">1</td><td id="LC1" class="td-code"><span class="keyword operator ts">type</span> <span class="identifier">Language</span> {</td></tr><tr class="row"><td id="L2" class="td-index">2</td><td id="LC2" class="td-code"></td></tr><tr class="row"><td id="L3" class="td-index">3</td><td id="LC3" class="td-code"><span class="tab"><span class="meta">code</span>: <a class="support type" href="id.doc.html">ID</a> </span></td></tr><tr class="row"><td id="L5" class="td-index">5</td><td id="LC5" class="td-code"></td></tr><tr class="row"><td id="L4" class="td-index">4</td><td id="LC4" class="td-code"><span class="tab"><span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a> </span></td></tr><tr class="row"><td id="L6" class="td-index">6</td><td id="LC6" class="td-code"></td></tr><tr class="row"><td id="L7" class="td-index">7</td><td id="LC7" class="td-code">}</td></tr></tbody></table></code>
+                  <code class="highlight"><table class="code"><tbody><tr class="row"><td id="L1" class="td-index">1</td><td id="LC1" class="td-code"><span class="keyword operator ts">enum</span> <span class="identifier">Language</span> {</td></tr><tr class="row"><td id="L2" class="td-index">2</td><td id="LC2" class="td-code"><span class="tab"></span></td></tr><tr class="row"><td id="L3" class="td-index">3</td><td id="LC3" class="td-code"><span class="tab"><span class="comment line">#   German</span></span></td></tr><tr class="row"><td id="L4" class="td-index">4</td><td id="LC4" class="td-code"><span class="tab"><span class="meta">DE</span></span></td></tr><tr class="row"><td id="L5" class="td-index">5</td><td id="LC5" class="td-code"><span class="tab"></span></td></tr><tr class="row"><td id="L6" class="td-index">6</td><td id="LC6" class="td-code"><span class="tab"><span class="comment line">#   English</span></span></td></tr><tr class="row"><td id="L7" class="td-index">7</td><td id="LC7" class="td-code"><span class="tab"><span class="meta">EN</span></span></td></tr><tr class="row"><td id="L8" class="td-index">8</td><td id="LC8" class="td-code"><span class="tab"></span></td></tr><tr class="row"><td id="L9" class="td-index">9</td><td id="LC9" class="td-code"><span class="tab"><span class="comment line">#   Spanish</span></span></td></tr><tr class="row"><td id="L10" class="td-index">10</td><td id="LC10" class="td-code"><span class="tab"><span class="meta">ES</span></span></td></tr><tr class="row"><td id="L11" class="td-index">11</td><td id="LC11" class="td-code"><span class="tab"></span></td></tr><tr class="row"><td id="L12" class="td-index">12</td><td id="LC12" class="td-code"><span class="tab"><span class="comment line">#   French</span></span></td></tr><tr class="row"><td id="L13" class="td-index">13</td><td id="LC13" class="td-code"><span class="tab"><span class="meta">FR</span></span></td></tr><tr class="row"><td id="L14" class="td-index">14</td><td id="LC14" class="td-code"><span class="tab"></span></td></tr><tr class="row"><td id="L15" class="td-index">15</td><td id="LC15" class="td-code"><span class="tab"><span class="comment line">#   Italian</span></span></td></tr><tr class="row"><td id="L16" class="td-index">16</td><td id="LC16" class="td-code"><span class="tab"><span class="meta">IT</span></span></td></tr><tr class="row"><td id="L17" class="td-index">17</td><td id="LC17" class="td-code"><span class="tab"></span></td></tr><tr class="row"><td id="L18" class="td-index">18</td><td id="LC18" class="td-code"><span class="tab"><span class="comment line">#   Portuguese</span></span></td></tr><tr class="row"><td id="L19" class="td-index">19</td><td id="LC19" class="td-code"><span class="tab"><span class="meta">PT</span></span></td></tr><tr class="row"><td id="L20" class="td-index">20</td><td id="LC20" class="td-code"><span class="tab"></span></td></tr><tr class="row"><td id="L21" class="td-index">21</td><td id="LC21" class="td-code"><span class="tab"><span class="comment line">#   Portuguese (Brazil)</span></span></td></tr><tr class="row"><td id="L22" class="td-index">22</td><td id="LC22" class="td-code"><span class="tab"><span class="meta">PT_BR</span></span></td></tr><tr class="row"><td id="L23" class="td-index">23</td><td id="LC23" class="td-code"><span class="tab"></span></td></tr><tr class="row"><td id="L24" class="td-index">24</td><td id="LC24" class="td-code"><span class="tab"><span class="comment line">#   Russian</span></span></td></tr><tr class="row"><td id="L25" class="td-index">25</td><td id="LC25" class="td-code"><span class="tab"><span class="meta">RU</span></span></td></tr><tr class="row"><td id="L26" class="td-index">26</td><td id="LC26" class="td-code">}</td></tr></tbody></table></code>
               </div>
           </section>
           <section>
@@ -334,7 +325,7 @@
                       </a>
                       Required by
                   </h2>
-                  <ul class="require-by"><li><a href="languageedge.doc.html" title="LanguageEdge - ">LanguageEdge<em>null</em></a><li></ul>
+                  <ul class="require-by"><li><a href="displayoptions.doc.html" title="DisplayOptions - How the results should be rendered">DisplayOptions<em>How the results should be rendered</em></a><li></ul>
               </div>
           </section>
           <footer>
