@@ -1,9 +1,5 @@
 #!/bin/bash
 
-rm -f schema.json
-
-gql2js schema.graphqls | jq '. | {data: .}' > schema.json
-
-graphdoc -c configuration.json -s schema.json --force
+graphdoc -c configuration.json -s schema.graphql --force
 
 cp -f ../../product/logo.png docs/assets/.

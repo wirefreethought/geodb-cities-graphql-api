@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>Language</title>
+    <title>__Directive</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><script src="./assets/line-link.js"></script><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -145,7 +145,7 @@
                             CurrencyEdge
                         </a>
                     </li>
-                    <li class="slds-is-active" title="Language">
+                    <li  title="Language">
                         <a href="language.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                             Language
                         </a>
@@ -215,7 +215,7 @@
                             TimeZonesConnection
                         </a>
                     </li>
-                    <li  title="__Directive">
+                    <li class="slds-is-active" title="__Directive">
                         <a href="directive.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                             __Directive
                         </a>
@@ -311,8 +311,10 @@
               </div>
               <div class="container">
                   <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
-                  <h1 class="slds-text-heading--large">Language</h1>
-                  <div class="slds-text-body--regular"></div>
+                  <h1 class="slds-text-heading--large">__Directive</h1>
+                  <div class="slds-text-body--regular"><p>A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.</p>
+<p>In some cases, you need to provide options to alter GraphQL&#39;s execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.</p>
+</div>
               </div>
           </section>
           <section>
@@ -323,7 +325,7 @@
                       </a>
                       GraphQL Schema definition
                   </h2>
-                  <code class="highlight"><table class="code"><tbody><tr class="row"><td id="L1" class="td-index">1</td><td id="LC1" class="td-code"><span class="keyword operator ts">type</span> <span class="identifier">Language</span> {</td></tr><tr class="row"><td id="L2" class="td-index">2</td><td id="LC2" class="td-code"></td></tr><tr class="row"><td id="L3" class="td-index">3</td><td id="LC3" class="td-code"><span class="tab"><span class="meta">code</span>: <a class="support type" href="id.doc.html">ID</a> </span></td></tr><tr class="row"><td id="L5" class="td-index">5</td><td id="LC5" class="td-code"></td></tr><tr class="row"><td id="L4" class="td-index">4</td><td id="LC4" class="td-code"><span class="tab"><span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a> </span></td></tr><tr class="row"><td id="L6" class="td-index">6</td><td id="LC6" class="td-code"></td></tr><tr class="row"><td id="L7" class="td-index">7</td><td id="LC7" class="td-code">}</td></tr></tbody></table></code>
+                  <code class="highlight"><table class="code"><tbody><tr class="row"><td id="L1" class="td-index">1</td><td id="LC1" class="td-code"><span class="keyword operator ts">type</span> <span class="identifier">__Directive</span> {</td></tr><tr class="row"><td id="L2" class="td-index">2</td><td id="LC2" class="td-code"></td></tr><tr class="row"><td id="L3" class="td-index">3</td><td id="LC3" class="td-code"><span class="tab"><span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>! </span></td></tr><tr class="row"><td id="L8" class="td-index">8</td><td id="LC8" class="td-code"></td></tr><tr class="row"><td id="L4" class="td-index">4</td><td id="LC4" class="td-code"><span class="tab"><span class="meta">description</span>: <a class="support type" href="string.doc.html">String</a> </span></td></tr><tr class="row"><td id="L8" class="td-index">8</td><td id="LC8" class="td-code"></td></tr><tr class="row"><td id="L5" class="td-index">5</td><td id="LC5" class="td-code"><span class="tab"><span class="meta">isRepeatable</span>: <a class="support type" href="boolean.doc.html">Boolean</a>! </span></td></tr><tr class="row"><td id="L8" class="td-index">8</td><td id="LC8" class="td-code"></td></tr><tr class="row"><td id="L6" class="td-index">6</td><td id="LC6" class="td-code"><span class="tab"><span class="meta">locations</span>: [<a class="support type" href="directivelocation.spec.html">__DirectiveLocation</a>!]! </span></td></tr><tr class="row"><td id="L8" class="td-index">8</td><td id="LC8" class="td-code"></td></tr><tr class="row"><td id="L7" class="td-index">7</td><td id="LC7" class="td-code"><span class="tab"><span class="meta">args</span>: [<a class="support type" href="inputvalue.spec.html">__InputValue</a>!]! </span></td></tr><tr class="row"><td id="L9" class="td-index">9</td><td id="LC9" class="td-code"></td></tr><tr class="row"><td id="L10" class="td-index">10</td><td id="LC10" class="td-code">}</td></tr></tbody></table></code>
               </div>
           </section>
           <section>
@@ -334,7 +336,7 @@
                       </a>
                       Required by
                   </h2>
-                  <ul class="require-by"><li><a href="languageedge.doc.html" title="LanguageEdge - ">LanguageEdge<em>null</em></a><li></ul>
+                  <ul class="require-by"><li><a href="schema.spec.html" title="__Schema - A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.">__Schema<em>A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.</em></a><li></ul>
               </div>
           </section>
           <footer>
