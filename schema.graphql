@@ -72,10 +72,10 @@ enum IncludeDeletedFilterType {
 
 "How the results should be rendered"
 input DisplayOptions {
-  "Whether to display results using ASCII-only characters."
+  "Whether to display results using ASCII-only characters"
   asciiMode: Boolean = false
 
-  "What language to display the results in."
+  "What language to display the results in"
   language: Language = EN
 }
 
@@ -179,46 +179,81 @@ type Query {
   ): TimeZonesConnection
 }
 
+"Info about the current connection page slice"
 type ConnectionPageInfo {
+  "The opaque id of the cursor representing the index of the first element in this page"
   startCursor: String
+
+  "The opaque id of the cursor representing the index of the last element in this page"
   endCursor: String
+
+  "Whether there are more pages in the results"
   hasNextPage: Boolean
+
+  "Whether there are previous pages in the results"
   hasPreviousPage: Boolean
 }
 
+"A country"
 type Country {
-  code: ID
+  "The ISO-3166 country code"
+  code: String
 
-  name: String
+  "The country WikiData id"
   wikiDataId: String
 
+  "The country name (varies by requested language)"
+  name: String
+
+  "A list of supported ISO-4217 currency codes"
   currencyCodes: [String]
+
+  "The country flag image"
   flagImageUri: String
 
+  "The number of regions in this country"
   numRegions: Int
 
+  "Look up a region in this country. This could be a state, province, district, or otherwise major political division."
   region(
+    "An ISO-3166 or FIPS region code"
     code: String
   ): CountryRegion
 
+  "Find regions in this country. These could be states, provinces, districts, or otherwise major political divisions."
   regions(
+    "Only regions whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
 
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
+
+    "The cursor id after which to get results"
     after: String
+
+    "How many results to retrieve from the end (or before the 'before' cursor, if specified)"
     last: Int
+
+    "The cursor id before which to get results"
     before: String
   ): CountryRegionsConnection
 }
 
+"When paging countries, wraps a country node together with the cursor referencing its position in the results"
 type CountryEdge {
   cursor: String
   node: Country
 }
 
+"A pageable view into country results"
 type CountriesConnection {
+  "The total number of results"
   totalCount: Int
+
+  "The edges in the current page of results"
   edges: [CountryEdge]
+
+  "Info about the current page of results"
   pageInfo: ConnectionPageInfo
 }
 
