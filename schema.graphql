@@ -209,7 +209,11 @@ type Query {
     "Only places for these types"
     types: [String]
 
-    "How to sort place results. 'Format: ±SORT_FIELD,±SORT_FIELD' where SORT_FIELD = countryCode | elevation | name | population"
+    """
+    How to sort place results
+    Format: ±SORT_FIELD,±SORT_FIELD 
+    where SORT_FIELD = countryCode | elevation | name | population
+    """
     sort: String
 
     "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
@@ -371,7 +375,11 @@ type CountryRegion {
     "Only places for these types"
     types: [String]
 
-    "How to sort place results. 'Format: ±SORT_FIELD,±SORT_FIELD' where SORT_FIELD = elevation | name | population"
+    """
+    How to sort place results
+    Format: ±SORT_FIELD,±SORT_FIELD
+    where SORT_FIELD = elevation | name | population
+    """
     sort: String
 
     "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
@@ -557,7 +565,11 @@ type PopulatedPlace {
     "Only places for these types"
     types: [String]
 
-    "How to sort place results. 'Format: ±SORT_FIELD,±SORT_FIELD' where SORT_FIELD = countryCode | elevation | name | population"
+    """
+    How to sort place results
+    Format: ±SORT_FIELD,±SORT_FIELD
+    where SORT_FIELD = countryCode | elevation | name | population
+    """
     sort: String
 
     "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
