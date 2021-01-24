@@ -92,78 +92,142 @@ input Location {
 type Query {
   "Look up a country"  
   country(
+    "An ISO-3166 country code or WikiData id"
     id: ID!
+
+    "How to display the results"
     displayOptions: DisplayOptions
   ): Country
 
   "Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries."
   countries(
+    "Only countries supporting this currency" 
     currencyCode: String
+
+    "Only countries whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
 
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
+
+    "The cursor id after which to get results"
     after: String
+
+    "How many results to retrieve from the end (or before the 'before' cursor, if specified)"
     last: Int
+
+    "The cursor id before which to get results"
     before: String
 
+    "How to display the results"
     displayOptions: DisplayOptions
   ): CountriesConnection
 
   "Find currencies, filtering by optional criteria. If no criteria are set, you will get back all known currencies."
   currencies(
-    countryId: String
+    "Currencies for this country id"
+    countryId: ID
 
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
+
+    "The cursor id after which to get results"
     after: String
+
+    "How many results to retrieve from the end (or before the 'before' cursor, if specified)"
     last: Int
+
+    "The cursor id before which to get results"
     before: String
   ): CurrenciesConnection
 
   "Get the distance between any two places"
   distanceBetween(
-    fromPlaceId: String
-    toPlaceId: String
+    "From some place"
+    fromPlaceId: ID!
+
+    "To some place"
+    toPlaceId: ID!
+
+    "The unit of distance to use"
     distanceUnit: DistanceUnit = MI
   ): Float
 
   "Get all known locales"
   locales(
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"  
     first: Int
+
+    "The cursor id after which to get results"
     after: String
+
+    "How many results to retrieve from the end (or before the 'before' cursor, if specified)"
     last: Int
+
+    "The cursor id before which to get results"
     before: String
   ): LocalesConnection
 
   "Look up a populated place"
   populatedPlace(
+    # A place id (either native id or Wikidata ID)
     id: ID!
+
+    "How to display the results"
     displayOptions: DisplayOptions
   ): PopulatedPlace
 
   "Find populated places, filtering by optional criteria. If no criteria are set, you will get back all known places."
   populatedPlaces (
+    "Only places near this location"
     location: Location
+
+    "The location radius within which to find places"
     radius: Float = 100
+
+    "The unit of distance to use"
     distanceUnit: DistanceUnit = MI
 
-    countryIds: [String]
-    excludedCountryIds: [String]
+    "Only places in these countries"
+    countryIds: [ID]
 
+    "Only places NOT in these countries"
+    excludedCountryIds: [ID]
+
+    "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
+
+    "Only places having at least this population"
     minPopulation: Int @default(property:"defaults.minPopulation")
+
+    "Only places having no more than this population"
     maxPopulation: Int
-    timeZoneIds: [String]
+
+    "Only places in these time-zones"
+    timeZoneIds: [ID]
+
+    "Only places for these types"
     types: [String]
 
+    "How to sort place results. 'Format: ±SORT_FIELD,±SORT_FIELD' where SORT_FIELD = countryCode | elevation | name | population"
     sort: String
 
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
+
+    "The cursor id after which to get results"
     after: String
+
+    "How many results to retrieve from the end (or before the 'before' cursor, if specified)"
     last: Int
+
+    "The cursor id before which to get results"
     before: String
 
+    "How to display the results"
     displayOptions: DisplayOptions
 
+    "Whether to include any places marked deleted"
     includeDeleted: IncludeDeletedFilterType = NONE
   ): PopulatedPlacesConnection
 
@@ -172,9 +236,16 @@ type Query {
 
   "Get all known time-zones"
   timeZones(
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"  
     first: Int
+
+    "The cursor id after which to get results"
     after: String
+
+    "How many results to retrieve from the end (or before the 'before' cursor, if specified)"
     last: Int
+
+    "The cursor id before which to get results"
     before: String
   ): TimeZonesConnection
 }
@@ -197,12 +268,12 @@ type ConnectionPageInfo {
 "A country"
 type Country {
   "The ISO-3166 country code"
-  code: String
+  code: ID
 
   "The country WikiData id"
-  wikiDataId: String
+  wikiDataId: ID
 
-  "The country name (varies by requested language)"
+  "The country name"
   name: String
 
   "A list of supported ISO-4217 currency codes"
@@ -214,13 +285,13 @@ type Country {
   "The number of regions in this country"
   numRegions: Int
 
-  "Look up a region in this country. This could be a state, province, district, or otherwise major political division."
+  "Look up a region in this country"
   region(
     "An ISO-3166 or FIPS region code"
-    code: String
+    code: ID
   ): CountryRegion
 
-  "Find regions in this country. These could be states, provinces, districts, or otherwise major political divisions."
+  "Find regions in this country"
   regions(
     "Only regions whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
@@ -241,7 +312,10 @@ type Country {
 
 "When paging countries, wraps a country node together with the cursor referencing its position in the results"
 type CountryEdge {
+  "The cursor id referencing the position of this node in the results"
   cursor: String
+
+  "The node value"
   node: Country
 }
 
@@ -257,154 +331,289 @@ type CountriesConnection {
   pageInfo: ConnectionPageInfo
 }
 
+"A region in a country. This could be a state, province, district, or otherwise major political division."
 type CountryRegion {
+  "The region FIPS 10-4 code"
+  fipsCode: ID
+
+  "The region ISO-3166 code"
   isoCode: ID
 
-  fipsCode: String
-  name: String
-  wikiDataId: String
+  "The region WikiData id"
+  wikiDataId: ID
 
+  "The region name"
+  name: String
+
+  "The region's capital city"
   capital: String
 
+  "The region's country"
   country: Country
-
+ 
+  "The number of populated places in this region"
   numPopulatedPlaces: Int @fetch(from:"numCities")
 
+  "Find populated places in this region"
   populatedPlaces (
-    countryIds: [String]
-    excludedCountryIds: [String]
-
+    "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
+
+    "Only places having at least this population"
     minPopulation: Int @default(property:"defaults.minPopulation")
+
+    "Only places having no more than this population"
     maxPopulation: Int
-    timeZoneIds: [String]
+
+    "Only places in these time-zones"
+    timeZoneIds: [ID]
+
+    "Only places for these types"
     types: [String]
 
+    "How to sort place results. 'Format: ±SORT_FIELD,±SORT_FIELD' where SORT_FIELD = elevation | name | population"
     sort: String
 
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
+
+    "The cursor id after which to get results"
     after: String
+
+    "How many results to retrieve from the end (or before the 'before' cursor, if specified)"
     last: Int
+
+    "The cursor id before which to get results"
     before: String
 
+    "Whether to include any places marked deleted"
     includeDeleted: IncludeDeletedFilterType = NONE
   ): RegionPopulatedPlacesConnection
 }
 
+"When paging regions, wraps a region node together with the cursor referencing its position in the results"
 type CountryRegionEdge {
+  "The cursor id referencing the position of this node in the results"
   cursor: String
+
+  "The node value"
   node: CountryRegion
 }
 
+"A pageable view into region results"
 type CountryRegionsConnection {
+  "The total number of results"    
   totalCount: Int
+
+  "The edges in the current page of results"
   edges: [CountryRegionEdge]
+
+  "Info about the current page of results"  
   pageInfo: ConnectionPageInfo
 }
 
+"A country currency"
 type Currency {
-  countryCodes: [String]
+  countryCodes: [ID]
   code: ID
   symbol: String
 }
 
+"When paging currencies, wraps a currency node together with the cursor referencing its position in the results"
 type CurrencyEdge {
+  "The cursor id referencing the position of this node in the results"  
   cursor: String
+
+  "The node value"
   node: Currency
 }
 
+"A pageable view into currency results"
 type CurrenciesConnection {
+  "The total number of results"       
   totalCount: Int
+
+  "The edges in the current page of results"  
   edges: [CurrencyEdge]
+
+  "Info about the current page of results"  
   pageInfo: ConnectionPageInfo
 }
 
+"A regional locale representing some country/language combination"
 type Locale {
   code: ID
   name: String
 }
 
+"When paging locales, wraps a locale node together with the cursor referencing its position in the results"
 type LocaleEdge {
+  "The cursor id referencing the position of this node in the results"  
   cursor: String
+
+  "The node value"
   node: Locale
 }
 
+"A pageable view into locale results"
 type LocalesConnection {
+  "The total number of results"       
   totalCount: Int
+
+  "The edges in the current page of results"  
   edges: [LocaleEdge]
+
+  "Info about the current page of results"  
   pageInfo: ConnectionPageInfo
 }
 
+"A pageable view into nearby populated-place results"
 type NearbyPopulatedPlacesConnection {
+  "The total number of results"       
   totalCount: Int
+
+  "The edges in the current page of results"  
   edges: [PopulatedPlaceEdge]
+
+  "Info about the current page of results"  
   pageInfo: ConnectionPageInfo
 }
 
+"A place with some population of inhabitants"
 type PopulatedPlace {
+  "The place native id"
   id: ID
 
-  name: String
-  placeType: PopulatedPlaceType @fetch(from:"type")
-  wikiDataId: String
+  "The place WikiData id"
+  wikiDataId: ID
 
+  "The place name"
+  name: String
+
+  "The place type"
+  placeType: PopulatedPlaceType @fetch(from:"type")
+
+  "The place elevation (meters) above sea level"
   elevationMeters: Int
+
+  "The place latittude (-90.0 to 90.0)"
   latitude: Float
+
+  "The place longitude (-180.0 to 180.0)"
   longitude: Float
+
+  "The place population"
   population: Int
+
+  "The place timezone id"
   timezone: String
 
+  "The place's country"
   country: Country
+
+  "The place's region"
   region: CountryRegion
 
+  """
+  The distance result from some location-based query
+  This field has two forms:
+  - As a property (e.g., place.distance), returns the distance as part of a query returning places sorted by distance.
+  - As a function (e.g., place.distance(toPlaceId), returns the distance to the specified place.
+  """
   distance(
-    toPlaceId: String
+    "The distance to this place"
+    toPlaceId: ID
+
+    "The unit of distance to use"
     distanceUnit: DistanceUnit = MI
   ): Float
 
+  "Find nearby populated places"
   nearbyPopulatedPlaces(
+    "The location radius within which to find places"
     radius: Float = 100
+
+    "The unit of distance to use"
     distanceUnit: DistanceUnit = MI
 
-    countryIds: [String]
-    excludedCountryIds: [String]
+    "Only places in these countries"
+    countryIds: [ID]
 
+    "Only places NOT in these countries"
+    excludedCountryIds: [ID]
+
+    "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
+
+    "Only places having at least this population"
     minPopulation: Int @default(property:"defaults.minPopulation")
+    
+    "Only places having no more than this population"
     maxPopulation: Int
-    timeZoneIds: [String]
+
+    "Only places in these time-zones"
+    timeZoneIds: [ID]
+
+    "Only places for these types"
     types: [String]
 
+    "How to sort place results. 'Format: ±SORT_FIELD,±SORT_FIELD' where SORT_FIELD = countryCode | elevation | name | population"
     sort: String
 
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
+
+    "The cursor id after which to get results"
     after: String
+
+    "How many results to retrieve from the end (or before the 'before' cursor, if specified)"
     last: Int
+
+    "The cursor id before which to get results"
     before: String
 
+    "Whether to include any places marked deleted"
     includeDeleted: IncludeDeletedFilterType = NONE
   ): NearbyPopulatedPlacesConnection
 
+  "If this place has been marked deleted"
   deleted: Boolean
 }
 
+"When paging populated places, wraps a place node together with the cursor referencing its position in the results"
 type PopulatedPlaceEdge {
+  "The cursor id referencing the position of this node in the results"    
   cursor: String
+
+  "The node value"
   node: PopulatedPlace
 }
 
+"A pageable view into populated-place results"
 type PopulatedPlacesConnection {
+  "The total number of results"       
   totalCount: Int
+
+  "The edges in the current page of results"  
   edges: [PopulatedPlaceEdge]
+
+  "Info about the current page of results"  
   pageInfo: ConnectionPageInfo
 }
 
+"A pageable view into regional populated-place results"
 type RegionPopulatedPlacesConnection {
+  "The total number of results"       
   totalCount: Int
+
+  "The edges in the current page of results"  
   edges: [PopulatedPlaceEdge]
+
+  "Info about the current page of results"  
   pageInfo: ConnectionPageInfo
 }
 
+"A time-zone"
 type TimeZone {
   id: ID
 
@@ -415,13 +624,23 @@ type TimeZone {
   time: String
 }
 
+"When paging time-zones, wraps a time-zone node together with the cursor referencing its position in the results"
 type TimeZoneEdge {
+  "The cursor id referencing the position of this node in the results"  
   cursor: String
+
+  "The node value"
   node: TimeZone
 }
 
+"A pageable view into time-zone results"
 type TimeZonesConnection {
+  "The total number of results"       
   totalCount: Int
+
+  "The edges in the current page of results"    
   edges: [TimeZoneEdge]
+
+  "Info about the current page of results"  
   pageInfo: ConnectionPageInfo
 }

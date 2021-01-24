@@ -302,7 +302,8 @@
               <div class="container">
                   <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
                   <h1 class="slds-text-heading--large">LocaleEdge</h1>
-                  <div class="slds-text-body--regular"></div>
+                  <div class="slds-text-body--regular"><p>When paging locales, wraps a locale node together with the cursor referencing its position in the results</p>
+</div>
               </div>
           </section>
           <section>
@@ -313,7 +314,7 @@
                       </a>
                       GraphQL Schema definition
                   </h2>
-                  <code class="highlight"><table class="code"><tbody><tr class="row"><td id="L1" class="td-index">1</td><td id="LC1" class="td-code"><span class="keyword operator ts">type</span> <span class="identifier">LocaleEdge</span> {</td></tr><tr class="row"><td id="L2" class="td-index">2</td><td id="LC2" class="td-code"></td></tr><tr class="row"><td id="L3" class="td-index">3</td><td id="LC3" class="td-code"><span class="tab"><span class="meta">cursor</span>: <a class="support type" href="string.doc.html">String</a> </span></td></tr><tr class="row"><td id="L5" class="td-index">5</td><td id="LC5" class="td-code"></td></tr><tr class="row"><td id="L4" class="td-index">4</td><td id="LC4" class="td-code"><span class="tab"><span class="meta">node</span>: <a class="support type" href="locale.doc.html">Locale</a> </span></td></tr><tr class="row"><td id="L6" class="td-index">6</td><td id="LC6" class="td-code"></td></tr><tr class="row"><td id="L7" class="td-index">7</td><td id="LC7" class="td-code">}</td></tr></tbody></table></code>
+                  <code class="highlight"><table class="code"><tbody><tr class="row"><td id="L1" class="td-index">1</td><td id="LC1" class="td-code"><span class="keyword operator ts">type</span> <span class="identifier">LocaleEdge</span> {</td></tr><tr class="row"><td id="L2" class="td-index">2</td><td id="LC2" class="td-code"></td></tr><tr class="row"><td id="L3" class="td-index">3</td><td id="LC3" class="td-code"><span class="tab"><span class="comment line">#   The cursor id referencing the position of this node in the results</span></span></td></tr><tr class="row"><td id="L4" class="td-index">4</td><td id="LC4" class="td-code"><span class="tab"><span class="meta">cursor</span>: <a class="support type" href="string.doc.html">String</a> </span></td></tr><tr class="row"><td id="L7" class="td-index">7</td><td id="LC7" class="td-code"></td></tr><tr class="row"><td id="L5" class="td-index">5</td><td id="LC5" class="td-code"><span class="tab"><span class="comment line">#   The node value</span></span></td></tr><tr class="row"><td id="L6" class="td-index">6</td><td id="LC6" class="td-code"><span class="tab"><span class="meta">node</span>: <a class="support type" href="locale.doc.html">Locale</a> </span></td></tr><tr class="row"><td id="L8" class="td-index">8</td><td id="LC8" class="td-code"></td></tr><tr class="row"><td id="L9" class="td-index">9</td><td id="LC9" class="td-code">}</td></tr></tbody></table></code>
               </div>
           </section>
           <section>
@@ -324,7 +325,7 @@
                       </a>
                       Required by
                   </h2>
-                  <ul class="require-by"><li><a href="localesconnection.doc.html" title="LocalesConnection - ">LocalesConnection<em>null</em></a><li></ul>
+                  <ul class="require-by"><li><a href="localesconnection.doc.html" title="LocalesConnection - A pageable view into locale results">LocalesConnection<em>A pageable view into locale results</em></a><li></ul>
               </div>
           </section>
           <footer>
