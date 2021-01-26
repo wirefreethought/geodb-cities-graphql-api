@@ -207,7 +207,7 @@ type Query {
     timeZoneIds: [ID]
 
     "Only places for these types"
-    types: [PopulatedPlaceType]
+    types: [String]
 
     """
     How to sort place results
@@ -373,7 +373,7 @@ type CountryRegion {
     timeZoneIds: [ID]
 
     "Only places for these types"
-    types: [PopulatedPlaceType]
+    types: [String]
 
     """
     How to sort place results
@@ -563,7 +563,7 @@ type PopulatedPlace {
     timeZoneIds: [ID]
 
     "Only places for these types"
-    types: [PopulatedPlaceType]
+    types: [String]
 
     """
     How to sort place results
