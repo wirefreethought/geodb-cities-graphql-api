@@ -90,7 +90,7 @@ input Location {
 
 "The set of possible top-level queries"
 type Query {
-  "Look up a country"  
+  "Look up a country"
   country(
     "An ISO-3166 country code or WikiData id"
     id: ID!
@@ -101,7 +101,7 @@ type Query {
 
   "Find countries, filtering by optional criteria. If no criteria are set, you will get back all known countries."
   countries(
-    "Only countries supporting this currency" 
+    "Only countries supporting this currency"
     currencyCode: String
 
     "Only countries whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
@@ -155,7 +155,7 @@ type Query {
 
   "Get all known locales"
   locales(
-    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"  
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
 
     "The cursor id after which to get results"
@@ -211,7 +211,7 @@ type Query {
 
     """
     How to sort place results
-    Format: ±SORT_FIELD,±SORT_FIELD 
+    Format: ±SORT_FIELD,±SORT_FIELD
     where SORT_FIELD = countryCode | elevation | name | population
     """
     sort: String
@@ -240,7 +240,7 @@ type Query {
 
   "Get all known time-zones"
   timeZones(
-    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"  
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
 
     "The cursor id after which to get results"
@@ -276,6 +276,9 @@ type Country {
 
   "The country WikiData id"
   wikiDataId: ID
+
+  "The country's capital city"
+  capital: String
 
   "The country name"
   name: String
@@ -354,7 +357,7 @@ type CountryRegion {
 
   "The region's country"
   country: Country
- 
+
   "The number of populated places in this region"
   numPopulatedPlaces: Int @fetch(from:"numCities")
 
@@ -410,13 +413,13 @@ type CountryRegionEdge {
 
 "A pageable view into region results"
 type CountryRegionsConnection {
-  "The total number of results"    
+  "The total number of results"
   totalCount: Int
 
   "The edges in the current page of results"
   edges: [CountryRegionEdge]
 
-  "Info about the current page of results"  
+  "Info about the current page of results"
   pageInfo: ConnectionPageInfo
 }
 
@@ -429,7 +432,7 @@ type Currency {
 
 "When paging currencies, wraps a currency node together with the cursor referencing its position in the results"
 type CurrencyEdge {
-  "The cursor id referencing the position of this node in the results"  
+  "The cursor id referencing the position of this node in the results"
   cursor: String
 
   "The node value"
@@ -438,13 +441,13 @@ type CurrencyEdge {
 
 "A pageable view into currency results"
 type CurrenciesConnection {
-  "The total number of results"       
+  "The total number of results"
   totalCount: Int
 
-  "The edges in the current page of results"  
+  "The edges in the current page of results"
   edges: [CurrencyEdge]
 
-  "Info about the current page of results"  
+  "Info about the current page of results"
   pageInfo: ConnectionPageInfo
 }
 
@@ -456,7 +459,7 @@ type Locale {
 
 "When paging locales, wraps a locale node together with the cursor referencing its position in the results"
 type LocaleEdge {
-  "The cursor id referencing the position of this node in the results"  
+  "The cursor id referencing the position of this node in the results"
   cursor: String
 
   "The node value"
@@ -465,25 +468,25 @@ type LocaleEdge {
 
 "A pageable view into locale results"
 type LocalesConnection {
-  "The total number of results"       
+  "The total number of results"
   totalCount: Int
 
-  "The edges in the current page of results"  
+  "The edges in the current page of results"
   edges: [LocaleEdge]
 
-  "Info about the current page of results"  
+  "Info about the current page of results"
   pageInfo: ConnectionPageInfo
 }
 
 "A pageable view into nearby populated-place results"
 type NearbyPopulatedPlacesConnection {
-  "The total number of results"       
+  "The total number of results"
   totalCount: Int
 
-  "The edges in the current page of results"  
+  "The edges in the current page of results"
   edges: [PopulatedPlaceEdge]
 
-  "Info about the current page of results"  
+  "Info about the current page of results"
   pageInfo: ConnectionPageInfo
 }
 
@@ -555,7 +558,7 @@ type PopulatedPlace {
 
     "Only places having at least this population"
     minPopulation: Int @default(property:"defaults.minPopulation")
-    
+
     "Only places having no more than this population"
     maxPopulation: Int
 
@@ -594,7 +597,7 @@ type PopulatedPlace {
 
 "When paging populated places, wraps a place node together with the cursor referencing its position in the results"
 type PopulatedPlaceEdge {
-  "The cursor id referencing the position of this node in the results"    
+  "The cursor id referencing the position of this node in the results"
   cursor: String
 
   "The node value"
@@ -603,25 +606,25 @@ type PopulatedPlaceEdge {
 
 "A pageable view into populated-place results"
 type PopulatedPlacesConnection {
-  "The total number of results"       
+  "The total number of results"
   totalCount: Int
 
-  "The edges in the current page of results"  
+  "The edges in the current page of results"
   edges: [PopulatedPlaceEdge]
 
-  "Info about the current page of results"  
+  "Info about the current page of results"
   pageInfo: ConnectionPageInfo
 }
 
 "A pageable view into regional populated-place results"
 type RegionPopulatedPlacesConnection {
-  "The total number of results"       
+  "The total number of results"
   totalCount: Int
 
-  "The edges in the current page of results"  
+  "The edges in the current page of results"
   edges: [PopulatedPlaceEdge]
 
-  "Info about the current page of results"  
+  "Info about the current page of results"
   pageInfo: ConnectionPageInfo
 }
 
@@ -638,7 +641,7 @@ type TimeZone {
 
 "When paging time-zones, wraps a time-zone node together with the cursor referencing its position in the results"
 type TimeZoneEdge {
-  "The cursor id referencing the position of this node in the results"  
+  "The cursor id referencing the position of this node in the results"
   cursor: String
 
   "The node value"
@@ -647,12 +650,12 @@ type TimeZoneEdge {
 
 "A pageable view into time-zone results"
 type TimeZonesConnection {
-  "The total number of results"       
+  "The total number of results"
   totalCount: Int
 
-  "The edges in the current page of results"    
+  "The edges in the current page of results"
   edges: [TimeZoneEdge]
 
-  "Info about the current page of results"  
+  "Info about the current page of results"
   pageInfo: ConnectionPageInfo
 }
