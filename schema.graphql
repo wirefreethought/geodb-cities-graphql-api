@@ -539,6 +539,9 @@ type PopulatedPlace {
     distanceUnit: DistanceUnit = MI
   ): Float
 
+  "The place containing this place, if any"
+  locatedIn: PopulatedPlace
+
   "Find nearby populated places"
   nearbyPopulatedPlaces(
     "The location radius within which to find places"
