@@ -274,6 +274,9 @@ type Country {
   "The ISO-3166 country code"
   code: ID
 
+  "The country dialing prefix"
+  callingCode: String
+
   "The country WikiData id"
   wikiDataId: ID
 
