@@ -638,10 +638,10 @@ type RegionPopulatedPlacesConnection {
 type TimeZone {
   id: ID!
 
-  name: String
+  name: String!
   rawUtcOffsetHours: Int!
 
-  dateTime: String
+  dateTime: String!
   time: String!
 }
 
