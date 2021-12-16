@@ -257,43 +257,43 @@ type Query {
 "Info about the current connection page slice"
 type ConnectionPageInfo {
   "The opaque id of the cursor representing the index of the first element in this page"
-  startCursor: String
+  startCursor: String!
 
   "The opaque id of the cursor representing the index of the last element in this page"
-  endCursor: String
+  endCursor: String!
 
   "Whether there are more pages in the results"
-  hasNextPage: Boolean
+  hasNextPage: Boolean!
 
   "Whether there are previous pages in the results"
-  hasPreviousPage: Boolean
+  hasPreviousPage: Boolean!
 }
 
 "A country"
 type Country {
   "The ISO-3166 country code"
-  code: ID
+  code: ID!
 
   "The country dialing prefix"
-  callingCode: String
+  callingCode: String!
 
   "The country WikiData id"
-  wikiDataId: ID
+  wikiDataId: ID!
 
   "The country's capital city"
   capital: String
 
   "The country name"
-  name: String
+  name: String!
 
   "A list of supported ISO-4217 currency codes"
-  currencyCodes: [String]
+  currencyCodes: [String]!
 
   "The country flag image"
-  flagImageUri: String
+  flagImageUri: String!
 
   "The number of regions in this country"
-  numRegions: Int
+  numRegions: Int!
 
   "Look up a region in this country"
   region(
@@ -323,22 +323,22 @@ type Country {
 "When paging countries, wraps a country node together with the cursor referencing its position in the results"
 type CountryEdge {
   "The cursor id referencing the position of this node in the results"
-  cursor: String
+  cursor: String!
 
   "The node value"
-  node: Country
+  node: Country!
 }
 
 "A pageable view into country results"
 type CountriesConnection {
   "The total number of results"
-  totalCount: Int
+  totalCount: Int!
 
   "The edges in the current page of results"
-  edges: [CountryEdge]
+  edges: [CountryEdge]!
 
   "Info about the current page of results"
-  pageInfo: ConnectionPageInfo
+  pageInfo: ConnectionPageInfo!
 }
 
 "A region in a country. This could be a state, province, district, or otherwise major political division."
@@ -347,22 +347,22 @@ type CountryRegion {
   fipsCode: ID
 
   "The region ISO-3166 code"
-  isoCode: ID
+  isoCode: ID!
 
   "The region WikiData id"
   wikiDataId: ID
 
   "The region name"
-  name: String
+  name: String!
 
   "The region's capital city"
   capital: String
 
   "The region's country"
-  country: Country
+  country: Country!
 
   "The number of populated places in this region"
-  numPopulatedPlaces: Int @fetch(from:"numCities")
+  numPopulatedPlaces: Int! @fetch(from:"numCities")
 
   "Find populated places in this region"
   populatedPlaces (
@@ -408,104 +408,104 @@ type CountryRegion {
 "When paging regions, wraps a region node together with the cursor referencing its position in the results"
 type CountryRegionEdge {
   "The cursor id referencing the position of this node in the results"
-  cursor: String
+  cursor: String!
 
   "The node value"
-  node: CountryRegion
+  node: CountryRegion!
 }
 
 "A pageable view into region results"
 type CountryRegionsConnection {
   "The total number of results"
-  totalCount: Int
+  totalCount: Int!
 
   "The edges in the current page of results"
-  edges: [CountryRegionEdge]
+  edges: [CountryRegionEdge]!
 
   "Info about the current page of results"
-  pageInfo: ConnectionPageInfo
+  pageInfo: ConnectionPageInfo!
 }
 
 "A country currency"
 type Currency {
-  countryCodes: [ID]
-  code: ID
-  symbol: String
+  countryCodes: [ID]!
+  code: ID!
+  symbol: String!
 }
 
 "When paging currencies, wraps a currency node together with the cursor referencing its position in the results"
 type CurrencyEdge {
   "The cursor id referencing the position of this node in the results"
-  cursor: String
+  cursor: String!
 
   "The node value"
-  node: Currency
+  node: Currency!
 }
 
 "A pageable view into currency results"
 type CurrenciesConnection {
   "The total number of results"
-  totalCount: Int
+  totalCount: Int!
 
   "The edges in the current page of results"
-  edges: [CurrencyEdge]
+  edges: [CurrencyEdge]!
 
   "Info about the current page of results"
-  pageInfo: ConnectionPageInfo
+  pageInfo: ConnectionPageInfo!
 }
 
 "A regional locale representing some country/language combination"
 type Locale {
-  code: ID
-  name: String
+  code: ID!
+  name: String!
 }
 
 "When paging locales, wraps a locale node together with the cursor referencing its position in the results"
 type LocaleEdge {
   "The cursor id referencing the position of this node in the results"
-  cursor: String
+  cursor: String!
 
   "The node value"
-  node: Locale
+  node: Locale!
 }
 
 "A pageable view into locale results"
 type LocalesConnection {
   "The total number of results"
-  totalCount: Int
+  totalCount: Int!
 
   "The edges in the current page of results"
-  edges: [LocaleEdge]
+  edges: [LocaleEdge]!
 
   "Info about the current page of results"
-  pageInfo: ConnectionPageInfo
+  pageInfo: ConnectionPageInfo!
 }
 
 "A pageable view into nearby populated-place results"
 type NearbyPopulatedPlacesConnection {
   "The total number of results"
-  totalCount: Int
+  totalCount: Int!
 
   "The edges in the current page of results"
-  edges: [PopulatedPlaceEdge]
+  edges: [PopulatedPlaceEdge]!
 
   "Info about the current page of results"
-  pageInfo: ConnectionPageInfo
+  pageInfo: ConnectionPageInfo!
 }
 
 "A place with some population of inhabitants"
 type PopulatedPlace {
   "The place native id"
-  id: ID
+  id: ID!
 
   "The place WikiData id"
   wikiDataId: ID
 
   "The place name"
-  name: String
+  name: String!
 
   "The place type"
-  placeType: PopulatedPlaceType @fetch(from:"type")
+  placeType: PopulatedPlaceType! @fetch(from:"type")
 
   "The place elevation (meters) above sea level"
   elevationMeters: Int
@@ -517,13 +517,13 @@ type PopulatedPlace {
   longitude: Float
 
   "The place population"
-  population: Int
+  population: Int!
 
   "The place timezone id"
-  timezone: String
+  timezone: String!
 
   "The place's country"
-  country: Country
+  country: Country!
 
   "The place's region"
   region: CountryRegion
@@ -598,70 +598,70 @@ type PopulatedPlace {
   ): NearbyPopulatedPlacesConnection
 
   "If this place has been marked deleted"
-  deleted: Boolean
+  deleted: Boolean!
 }
 
 "When paging populated places, wraps a place node together with the cursor referencing its position in the results"
 type PopulatedPlaceEdge {
   "The cursor id referencing the position of this node in the results"
-  cursor: String
+  cursor: String!
 
   "The node value"
-  node: PopulatedPlace
+  node: PopulatedPlace!
 }
 
 "A pageable view into populated-place results"
 type PopulatedPlacesConnection {
   "The total number of results"
-  totalCount: Int
+  totalCount: Int!
 
   "The edges in the current page of results"
-  edges: [PopulatedPlaceEdge]
+  edges: [PopulatedPlaceEdge]!
 
   "Info about the current page of results"
-  pageInfo: ConnectionPageInfo
+  pageInfo: ConnectionPageInfo!
 }
 
 "A pageable view into regional populated-place results"
 type RegionPopulatedPlacesConnection {
   "The total number of results"
-  totalCount: Int
+  totalCount: Int!
 
   "The edges in the current page of results"
-  edges: [PopulatedPlaceEdge]
+  edges: [PopulatedPlaceEdge]!
 
   "Info about the current page of results"
-  pageInfo: ConnectionPageInfo
+  pageInfo: ConnectionPageInfo!
 }
 
 "A time-zone"
 type TimeZone {
-  id: ID
+  id: ID!
 
   name: String
-  rawUtcOffsetHours: Int
+  rawUtcOffsetHours: Int!
 
   dateTime: String
-  time: String
+  time: String!
 }
 
 "When paging time-zones, wraps a time-zone node together with the cursor referencing its position in the results"
 type TimeZoneEdge {
   "The cursor id referencing the position of this node in the results"
-  cursor: String
+  cursor: String!
 
   "The node value"
-  node: TimeZone
+  node: TimeZone!
 }
 
 "A pageable view into time-zone results"
 type TimeZonesConnection {
   "The total number of results"
-  totalCount: Int
+  totalCount: Int!
 
   "The edges in the current page of results"
-  edges: [TimeZoneEdge]
+  edges: [TimeZoneEdge]!
 
   "Info about the current page of results"
-  pageInfo: ConnectionPageInfo
+  pageInfo: ConnectionPageInfo!
 }
