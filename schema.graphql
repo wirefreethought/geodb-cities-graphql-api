@@ -107,6 +107,9 @@ type Query {
     "Only countries whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
 
+    "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested."
+    namePrefixDefaultLangResults: Boolean
+
     "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
 
@@ -196,6 +199,9 @@ type Query {
 
     "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
+
+    "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested."
+    namePrefixDefaultLangResults: Boolean
 
     "Only places having at least this population"
     minPopulation: Int @default(property:"defaults.minPopulation")
@@ -306,6 +312,9 @@ type Country {
     "Only regions whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
 
+    "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested."
+    namePrefixDefaultLangResults: Boolean
+
     "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
 
@@ -368,6 +377,9 @@ type CountryRegion {
   populatedPlaces (
     "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
+
+    "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested."
+    namePrefixDefaultLangResults: Boolean
 
     "Only places having at least this population"
     minPopulation: Int @default(property:"defaults.minPopulation")
@@ -561,6 +573,9 @@ type PopulatedPlace {
 
     "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
     namePrefix: String
+
+    "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested."
+    namePrefixDefaultLangResults: Boolean
 
     "Only places having at least this population"
     minPopulation: Int @default(property:"defaults.minPopulation")
