@@ -108,7 +108,14 @@ type Query {
     namePrefix: String
 
     "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested."
-    namePrefixDefaultLangResults: Boolean
+    namePrefixDefaultLangResults: Boolean = true
+
+    """
+    How to sort countries
+    Format: ±SORT_FIELD
+    where SORT_FIELD = code | name
+    """
+    sort: String
 
     "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
@@ -216,7 +223,7 @@ type Query {
     types: [String]
 
     """
-    How to sort place results
+    How to sort places
     Format: ±SORT_FIELD,±SORT_FIELD
     where SORT_FIELD = countryCode | elevation | name | population
     """
@@ -315,6 +322,13 @@ type Country {
     "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested."
     namePrefixDefaultLangResults: Boolean
 
+    """
+    How to sort regions
+    Format: ±SORT_FIELD
+    where SORT_FIELD = fipsCode | isoCode | name
+    """
+    sort: String
+
     "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
     first: Int
 
@@ -371,7 +385,7 @@ type CountryRegion {
   country: Country!
 
   "The number of populated places in this region"
-  numPopulatedPlaces: Int! @fetch(from:"numCities")
+  numPopulatedPlaces: Int @fetch(from:"numCities")
 
   "Find populated places in this region"
   populatedPlaces (
