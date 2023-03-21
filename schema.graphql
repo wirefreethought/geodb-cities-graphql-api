@@ -53,6 +53,9 @@ enum PopulatedPlaceType {
 
   "A city, town, or village"
   CITY
+
+  "An island"
+  ISLAND
 }
 
 "What level of stale data is ok to pull"
@@ -308,6 +311,49 @@ type Country {
   "The number of regions in this country"
   numRegions: Int!
 
+  "Find populated places in this country"
+  populatedPlaces (
+    "Only places whose names start with this prefix. If language is set, the prefix will be matched on the name as it appears in that language."
+    namePrefix: String
+
+    "When name-prefix matching, whether or not to match on names in the default language if a non-default language is requested."
+    namePrefixDefaultLangResults: Boolean
+
+    "Only places having at least this population"
+    minPopulation: Int @default(property:"defaults.minPopulation")
+
+    "Only places having no more than this population"
+    maxPopulation: Int
+
+    "Only places in these time-zones"
+    timeZoneIds: [ID]
+
+    "Only places for these types"
+    types: [String]
+
+    """
+    How to sort place results
+    Format: ±SORT_FIELD,±SORT_FIELD
+    where SORT_FIELD = elevation | name | population
+    """
+    sort: String
+
+    "How many results to retrieve from the beginning (or after the 'after' cursor, if specified)"
+    first: Int
+
+    "The cursor id after which to get results"
+    after: String
+
+    "How many results to retrieve from the end (or before the 'before' cursor, if specified)"
+    last: Int
+
+    "The cursor id before which to get results"
+    before: String
+
+    "Whether to include any places marked deleted"
+    includeDeleted: IncludeDeletedFilterType = NONE
+  ): CountryPopulatedPlacesConnection
+
   "Look up a region in this country"
   region(
     "An ISO-3166 or FIPS region code"
@@ -364,6 +410,18 @@ type CountriesConnection {
   pageInfo: ConnectionPageInfo!
 }
 
+"A pageable view into country populated-place results"
+type CountryPopulatedPlacesConnection {
+  "The total number of results"
+  totalCount: Int!
+
+  "The edges in the current page of results"
+  edges: [PopulatedPlaceEdge]!
+
+  "Info about the current page of results"
+  pageInfo: ConnectionPageInfo!
+}
+
 "A region in a country. This could be a state, province, district, or otherwise major political division."
 type CountryRegion {
   "The region FIPS 10-4 code"
@@ -380,6 +438,9 @@ type CountryRegion {
 
   "The region's capital city"
   capital: String
+
+  "The region this region is in, if any"
+  containingRegion: CountryRegion
 
   "The region's country"
   country: Country!

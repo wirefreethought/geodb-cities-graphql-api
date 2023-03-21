@@ -2,4 +2,4 @@
 
 graphdoc -c configuration.json -s schema.graphql --force
 
-cp -f ../../product/logo.png docs/assets/.
+cp -f ../../service/logo.png docs/assets/.

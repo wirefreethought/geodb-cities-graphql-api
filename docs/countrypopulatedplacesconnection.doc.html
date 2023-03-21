@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>ConnectionPageInfo</title>
+    <title>CountryPopulatedPlacesConnection</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><script src="./assets/line-link.js"></script><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -100,7 +100,7 @@
             <div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
                 <h4 class="slds-text-title--caps slds-p-around--medium">Objects</h4>
                 <ul>
-                    <li class="slds-is-active" title="ConnectionPageInfo">
+                    <li  title="ConnectionPageInfo">
                         <a href="connectionpageinfo.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                             ConnectionPageInfo
                         </a>
@@ -120,7 +120,7 @@
                             CountryEdge
                         </a>
                     </li>
-                    <li  title="CountryPopulatedPlacesConnection">
+                    <li class="slds-is-active" title="CountryPopulatedPlacesConnection">
                         <a href="countrypopulatedplacesconnection.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                             CountryPopulatedPlacesConnection
                         </a>
@@ -306,8 +306,8 @@
               </div>
               <div class="container">
                   <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
-                  <h1 class="slds-text-heading--large">ConnectionPageInfo</h1>
-                  <div class="slds-text-body--regular"><p>Info about the current connection page slice</p>
+                  <h1 class="slds-text-heading--large">CountryPopulatedPlacesConnection</h1>
+                  <div class="slds-text-body--regular"><p>A pageable view into country populated-place results</p>
 </div>
               </div>
           </section>
@@ -319,7 +319,7 @@
                       </a>
                       GraphQL Schema definition
                   </h2>
-                  <code class="highlight"><table class="code"><tbody><tr class="row"><td id="L1" class="td-index">1</td><td id="LC1" class="td-code"><span class="keyword operator ts">type</span> <span class="identifier">ConnectionPageInfo</span> {</td></tr><tr class="row"><td id="L2" class="td-index">2</td><td id="LC2" class="td-code"></td></tr><tr class="row"><td id="L3" class="td-index">3</td><td id="LC3" class="td-code"><span class="tab"><span class="comment line">#   The opaque id of the cursor representing the index of the first element in this </span></span></td></tr><tr class="row"><td id="L4" class="td-index">4</td><td id="LC4" class="td-code"><span class="tab"><span class="comment line">#   page</span></span></td></tr><tr class="row"><td id="L5" class="td-index">5</td><td id="LC5" class="td-code"><span class="tab"><span class="meta">startCursor</span>: <a class="support type" href="string.doc.html">String</a>! </span></td></tr><tr class="row"><td id="L13" class="td-index">13</td><td id="LC13" class="td-code"></td></tr><tr class="row"><td id="L6" class="td-index">6</td><td id="LC6" class="td-code"><span class="tab"><span class="comment line">#   The opaque id of the cursor representing the index of the last element in this </span></span></td></tr><tr class="row"><td id="L7" class="td-index">7</td><td id="LC7" class="td-code"><span class="tab"><span class="comment line">#   page</span></span></td></tr><tr class="row"><td id="L8" class="td-index">8</td><td id="LC8" class="td-code"><span class="tab"><span class="meta">endCursor</span>: <a class="support type" href="string.doc.html">String</a>! </span></td></tr><tr class="row"><td id="L13" class="td-index">13</td><td id="LC13" class="td-code"></td></tr><tr class="row"><td id="L9" class="td-index">9</td><td id="LC9" class="td-code"><span class="tab"><span class="comment line">#   Whether there are more pages in the results</span></span></td></tr><tr class="row"><td id="L10" class="td-index">10</td><td id="LC10" class="td-code"><span class="tab"><span class="meta">hasNextPage</span>: <a class="support type" href="boolean.doc.html">Boolean</a>! </span></td></tr><tr class="row"><td id="L13" class="td-index">13</td><td id="LC13" class="td-code"></td></tr><tr class="row"><td id="L11" class="td-index">11</td><td id="LC11" class="td-code"><span class="tab"><span class="comment line">#   Whether there are previous pages in the results</span></span></td></tr><tr class="row"><td id="L12" class="td-index">12</td><td id="LC12" class="td-code"><span class="tab"><span class="meta">hasPreviousPage</span>: <a class="support type" href="boolean.doc.html">Boolean</a>! </span></td></tr><tr class="row"><td id="L14" class="td-index">14</td><td id="LC14" class="td-code"></td></tr><tr class="row"><td id="L15" class="td-index">15</td><td id="LC15" class="td-code">}</td></tr></tbody></table></code>
+                  <code class="highlight"><table class="code"><tbody><tr class="row"><td id="L1" class="td-index">1</td><td id="LC1" class="td-code"><span class="keyword operator ts">type</span> <span class="identifier">CountryPopulatedPlacesConnection</span> {</td></tr><tr class="row"><td id="L2" class="td-index">2</td><td id="LC2" class="td-code"></td></tr><tr class="row"><td id="L3" class="td-index">3</td><td id="LC3" class="td-code"><span class="tab"><span class="comment line">#   The total number of results</span></span></td></tr><tr class="row"><td id="L4" class="td-index">4</td><td id="LC4" class="td-code"><span class="tab"><span class="meta">totalCount</span>: <a class="support type" href="int.doc.html">Int</a>! </span></td></tr><tr class="row"><td id="L9" class="td-index">9</td><td id="LC9" class="td-code"></td></tr><tr class="row"><td id="L5" class="td-index">5</td><td id="LC5" class="td-code"><span class="tab"><span class="comment line">#   The edges in the current page of results</span></span></td></tr><tr class="row"><td id="L6" class="td-index">6</td><td id="LC6" class="td-code"><span class="tab"><span class="meta">edges</span>: [<a class="support type" href="populatedplaceedge.doc.html">PopulatedPlaceEdge</a>]! </span></td></tr><tr class="row"><td id="L9" class="td-index">9</td><td id="LC9" class="td-code"></td></tr><tr class="row"><td id="L7" class="td-index">7</td><td id="LC7" class="td-code"><span class="tab"><span class="comment line">#   Info about the current page of results</span></span></td></tr><tr class="row"><td id="L8" class="td-index">8</td><td id="LC8" class="td-code"><span class="tab"><span class="meta">pageInfo</span>: <a class="support type" href="connectionpageinfo.doc.html">ConnectionPageInfo</a>! </span></td></tr><tr class="row"><td id="L10" class="td-index">10</td><td id="LC10" class="td-code"></td></tr><tr class="row"><td id="L11" class="td-index">11</td><td id="LC11" class="td-code">}</td></tr></tbody></table></code>
               </div>
           </section>
           <section>
@@ -330,7 +330,7 @@
                       </a>
                       Required by
                   </h2>
-                  <ul class="require-by"><li><a href="countriesconnection.doc.html" title="CountriesConnection - A pageable view into country results">CountriesConnection<em>A pageable view into country results</em></a><li><li><a href="countrypopulatedplacesconnection.doc.html" title="CountryPopulatedPlacesConnection - A pageable view into country populated-place results">CountryPopulatedPlacesConnection<em>A pageable view into country populated-place results</em></a><li><li><a href="countryregionsconnection.doc.html" title="CountryRegionsConnection - A pageable view into region results">CountryRegionsConnection<em>A pageable view into region results</em></a><li><li><a href="currenciesconnection.doc.html" title="CurrenciesConnection - A pageable view into currency results">CurrenciesConnection<em>A pageable view into currency results</em></a><li><li><a href="localesconnection.doc.html" title="LocalesConnection - A pageable view into locale results">LocalesConnection<em>A pageable view into locale results</em></a><li><li><a href="nearbypopulatedplacesconnection.doc.html" title="NearbyPopulatedPlacesConnection - A pageable view into nearby populated-place results">NearbyPopulatedPlacesConnection<em>A pageable view into nearby populated-place results</em></a><li><li><a href="populatedplacesconnection.doc.html" title="PopulatedPlacesConnection - A pageable view into populated-place results">PopulatedPlacesConnection<em>A pageable view into populated-place results</em></a><li><li><a href="regionpopulatedplacesconnection.doc.html" title="RegionPopulatedPlacesConnection - A pageable view into regional populated-place results">RegionPopulatedPlacesConnection<em>A pageable view into regional populated-place results</em></a><li><li><a href="timezonesconnection.doc.html" title="TimeZonesConnection - A pageable view into time-zone results">TimeZonesConnection<em>A pageable view into time-zone results</em></a><li></ul>
+                  <ul class="require-by"><li><a href="country.doc.html" title="Country - A country">Country<em>A country</em></a><li></ul>
               </div>
           </section>
           <footer>
